@@ -1,0 +1,67 @@
+#!/usr/bin/env ruby
+
+$:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
+
+help = <<HELP
+Barron uses filesystem locks, but provides an identical
+backend across a Ruby process (via gem) and the command-line.
+
+Basic Command Line Usage:
+  # Return success if available, error if not
+  barron "locked-resource"
+  # Block until the resource is free
+  barron "locked-resource" --block
+  
+  Other options follow:
+
+HELP
+
+require 'optparse'
+require 'barron'
+
+resource = nil
+options = {
+  :block => false
+}
+opts = OptionParser.new do |opts|
+  opts.banner = help
+
+  opts.on("--tmpdir [DIRECTORY]", "Where to write the lockfiles") do |directory|
+    options[:tmpdir] = directory unless directory.nil?
+  end
+
+  opts.on("--block", "If barron should block until the lock is released") do
+    options[:block] = true
+  end
+
+  opts.on("--version", "Display current version") do
+    puts "Spinto " + Spinto::VERSION
+    exit 0
+  end
+end
+
+# Read command line options into `options` hash
+opts.parse!
+
+
+# Get source and destintation from command line
+case ARGV.size
+  when 1
+    resource = ARGV[0]
+  else
+    puts "Invalid options. Run `barron --help` for assistance."
+    exit(1)
+end
+
+# Fire the lock, return success if it is free,
+# or hang until it is free.
+Barron.lock resource, options do
+  $stdout.puts "Requested resource is free."
+  exit(0)
+end
+
+# Unless barron was told to hang, we will pass
+# through to here when barron cannot get a lock.
+# So return failue.
+$stderr.puts "Requested resource is being used."
+exit(1)
