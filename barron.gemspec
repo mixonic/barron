@@ -28,12 +28,10 @@ Gem::Specification.new do |s|
   s.files = %w[
     Gemfile
     Rakefile
-    _plugins/coffeescript_converter.rb
-    _plugins/include_tree.rb
-    _plugins/include_watcher.rb
-    bin/spinto-site
-    lib/spinto.rb
-    spinto.gemspec
+    barron.gemspec
+    bin/barron
+    lib/barron.rb
+    lib/barron/tmpfile.rb
   ]
   # = MANIFEST =
 
