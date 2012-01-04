@@ -1,7 +1,7 @@
 module Barron
   require 'barron/tmpfile'
 
-  VERSION = '0.1.0'
+  VERSION = '0.1.1'
 
   def lock *args, &block
     Barron.lock *args, &block

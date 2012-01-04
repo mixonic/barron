@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name              = 'barron'
-  s.version           = '0.1.0'
+  s.version           = '0.1.1'
   s.date              = '2012-01-04'
 
   s.summary     = "Barron helps you with locking"
