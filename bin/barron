@@ -34,6 +34,10 @@ opts = OptionParser.new do |opts|
     options[:block] = true
   end
 
+  opts.on("--silent", "Don't make any noise") do
+    options[:silent] = true
+  end
+
   opts.on("--version", "Display current version") do
     puts "Spinto " + Spinto::VERSION
     exit 0
@@ -49,19 +53,19 @@ case ARGV.size
   when 1
     resource = ARGV[0]
   else
-    puts "Invalid options. Run `barron --help` for assistance."
+    $stderr.puts "Invalid options. Run `barron --help` for assistance." unless options[:silent]
     exit(1)
 end
 
 # Fire the lock, return success if it is free,
 # or hang until it is free.
 Barron.lock resource, options do
-  $stdout.puts "Requested resource is free."
+  $stdout.puts "Requested resource is free." unless options[:silent]
   exit(0)
 end
 
 # Unless barron was told to hang, we will pass
 # through to here when barron cannot get a lock.
 # So return failue.
-$stderr.puts "Requested resource is being used."
+$stderr.puts "Requested resource is being used." unless options[:silent]
 exit(1)
