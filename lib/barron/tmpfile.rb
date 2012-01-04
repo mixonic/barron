@@ -11,6 +11,7 @@ module Barron::Tmpfile
       }.merge(options)
       value = nil
       open("#{options[:tmpdir]}/barron-#{Digest::MD5.hexdigest("#{name}")}", File::RDWR|File::CREAT, 0666) do |f|
+        f.chmod(0666)
         begin
           if options[:block]
             f.flock(File::LOCK_EX)
