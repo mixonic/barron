@@ -46,7 +46,7 @@ gem install barron
 
 And you're done!
 
-**Additional Into**
+**Additional Info**
 
 Barron is licensed under the MIT License.
 
