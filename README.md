@@ -40,7 +40,7 @@ end
 
 **Installation**
 
-``` ruby
+``` bash
 gem install barron
 ```
 
