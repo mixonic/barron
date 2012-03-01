@@ -38,6 +38,7 @@ class MyClass
 end
 ```
 
+--
 **Installation**
 
 ``` bash
