@@ -46,10 +46,11 @@ gem install barron
 
 And you're done!
 
+--
 **Additional Info**
 
 Barron is licensed under the MIT License.
 
 [Robert Barron](http://en.wikipedia.org/wiki/Robert_Barron_(locksmith\)) invented the double–acting tumbler lock in 1778.
 
-Written by [Matthew Beale](matt.beale@madhatted.com).
+Written by Matthew Beale (matt.beale@madhatted.com).
