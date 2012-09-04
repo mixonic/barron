@@ -10,7 +10,7 @@ Barron can check for a lock, or wait until a resource becomes
 free.
 
 ``` bash
-barron my-resource # Will return success if available, or an error code is locked elsewhere
+barron my-resource # Will return success if available, or an error code if locked elsewhere
 barron my-resource --block # Will wait until the resource becomes free
 ```
 
@@ -25,7 +25,7 @@ class MyClass
   def my_work
 
     lock "my-resource", block: false do
-      # This will only run is the resource
+      # This will only run if the resource
       # is free when `lock` is called.
     end
 
